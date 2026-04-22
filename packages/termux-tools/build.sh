@@ -31,28 +31,28 @@ termux_step_create_debscripts() {
 }
 
 termux_step_post_massage() {
-    # Вызываем стандартную обработку
-    termux_step_post_massage
-    
-    # Заменяем com.termux на новый package name во всех файлах
-    sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./bin/termux-fix-shebang
-    sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./bin/termux-info
-    sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./bin/termux-open
-    sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./bin/termux-open-url
-    sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./libexec/termux-api
-    sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./libexec/termux-api-client
-    sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./libexec/termux-am
-    sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./libexec/termux-commands
-    
-    # Рекурсивно во всех остальных файлах
-    find . -type f -exec sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" {} \;
-    
-    # ===== ДОБАВЛЯЕМ КАСТОМНЫЙ MOTD =====
-    # Отключаем оригинальный скрипт вывода motd
-    chmod -x ./libexec/termux-messages 2>/dev/null || true
-    
-    # Создаём свой motd
-    cat > ./etc/motd << 'EOF'
+	# Вызываем стандартную обработку
+	termux_step_post_massage
+
+	# Заменяем com.termux на новый package name во всех файлах
+	sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./bin/termux-fix-shebang
+	sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./bin/termux-info
+	sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./bin/termux-open
+	sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./bin/termux-open-url
+	sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./libexec/termux-api
+	sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./libexec/termux-api-client
+	sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./libexec/termux-am
+	sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./libexec/termux-commands
+
+	# Рекурсивно во всех остальных файлах
+	find . -type f -exec sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" {} \;
+
+	# ===== ДОБАВЛЯЕМ КАСТОМНЫЙ MOTD =====
+	# Отключаем оригинальный скрипт вывода motd
+	chmod -x ./libexec/termux-messages 2>/dev/null || true
+
+	# Создаём свой motd
+	cat > ./etc/motd << 'EOF'
 Welcome to Termux!
 
 Developer Fork: https://github.com/Hinderchik
