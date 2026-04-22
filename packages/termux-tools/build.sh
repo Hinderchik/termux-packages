@@ -32,7 +32,7 @@ termux_step_create_debscripts() {
 
 termux_step_post_massage() {
 	# Вызываем стандартную обработку
-	termux_step_post_massage
+	termux_step_post_massage_original
 
 	# Заменяем com.termux на новый package name во всех файлах
 	sed -i "s/com.termux/${TERMUX_APP_PACKAGE}/g" ./bin/termux-fix-shebang

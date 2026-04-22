@@ -19,6 +19,7 @@ else
 fi
 
 set -euo pipefail
+export MAKEFLAGS="-j2"
 
 cd "$(realpath "$(dirname "$0")")"
 TERMUX_SCRIPTDIR=$(pwd)
