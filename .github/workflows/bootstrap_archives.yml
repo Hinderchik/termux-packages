@@ -23,14 +23,14 @@ jobs:
           - arm
           - i686
           - x86_64
-    if: github.repository == 'termux/termux-packages'
+    # if: github.repository == 'termux/termux-packages'
     steps:
       - name: Git clone
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
       - name: Create bootstrap archive
         run: ./scripts/generate-bootstraps.sh --architectures ${{ matrix.arch }}
       - name: Store artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v4
         with:
           name: bootstrap-archives-${{ matrix.arch }}-${{ github.sha }}
           path: "*.zip"
@@ -45,7 +45,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Fetch bootstrap archives
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v4
         with:
           merge-multiple: true
           path: ./
